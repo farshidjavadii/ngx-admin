@@ -10,14 +10,14 @@ export class PlayerComponent implements OnDestroy {
   @Input()
   @HostBinding('class.collapsed')
   collapsed: boolean;
-
+ 
   track: Track;
   player: HTMLAudioElement;
   shuffle: boolean;
 
   constructor(private playerService: PlayerService) {
     this.track = this.playerService.random();
-    this.createPlayer();
+    this.createPlayer();4
   }
 
   ngOnDestroy() {

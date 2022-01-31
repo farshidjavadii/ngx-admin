@@ -23,7 +23,7 @@ export class TrafficChartComponent implements AfterViewInit, OnDestroy {
   types = ['week', 'month', 'year'];
   option: any = {};
   echartsIntance: any;
-
+ 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
     this.layoutService.onSafeChangeLayoutSize()

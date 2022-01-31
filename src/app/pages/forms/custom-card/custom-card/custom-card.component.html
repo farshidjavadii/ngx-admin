@@ -1,0 +1,29 @@
+<nb-card
+  *ngIf="!removeCustomCard"
+  class="inline-form-card"
+  [ngClass]="fullscreenCustomCard ? 'fullscreen' : ''"
+>
+  <nb-card-header
+    >{{ title }}
+    <div class="float-left fa-3x">
+      <nb-icon
+        *ngIf="minimizable"
+        [icon]="minimizeCustomCard ? 'plus-outline' : 'minus-outline'"
+        (click)="minimizeIconClick($event)"
+      ></nb-icon>
+      <nb-icon
+        *ngIf="fullscreenable"
+        [icon]="fullscreenCustomCard ? 'collapse-outline' : 'expand-outline'"
+        (click)="fullScreenClick()"
+      ></nb-icon>
+      <nb-icon
+        *ngIf="removable"
+        icon="close-outline"
+        (click)="closeIconClick()"
+      ></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body [@enterAnimation] *ngIf="!minimizeCustomCard">
+    <ng-content></ng-content>
+  </nb-card-body>
+</nb-card>

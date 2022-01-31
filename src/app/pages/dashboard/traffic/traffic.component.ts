@@ -20,7 +20,7 @@ import { TrafficChartData } from '../../../@core/data/traffic-chart';
       <ngx-traffic-chart [points]="trafficChartPoints"></ngx-traffic-chart>
     </nb-card>
   `,
-})
+}) 
 export class TrafficComponent implements OnDestroy {
 
   private alive = true;

@@ -20,7 +20,7 @@ const VIEW_BOX_SIZE = 300;
   styleUrls: ['./temperature-dragger.component.scss'],
 })
 export class TemperatureDraggerComponent implements AfterViewInit, OnChanges {
-
+ 
   @ViewChild('svgRoot', { static: true }) svgRoot: ElementRef;
 
   @Input() fillColors: string|string[];
