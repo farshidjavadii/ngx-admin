@@ -1,0 +1,28 @@
+.my-drop-zone {
+    border: dotted 3px lightgray;
+    text-align: center;
+  }
+  .nv-file-over {
+    border: dotted 3px rgb(38, 0, 255);
+  } /* Default class applied to drop zones on over */
+  .another-file-over-class {
+    border: dotted 3px green;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  .disableLable{
+    color:gray;
+    cursor: no-drop;
+  }
+  .fileUploadSelectBtn{
+    cursor: pointer;
+    border:4px solid;
+    outline:none;
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 40%) 5px 5px;
+  }
+
+  

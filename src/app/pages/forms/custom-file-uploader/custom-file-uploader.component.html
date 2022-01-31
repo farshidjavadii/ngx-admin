@@ -1,0 +1,136 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+      <div *ngIf="MultiSelect">
+        <label for="multiplefiles" class="btn">{{ this.selectBtnText }}</label>
+        <input
+          id="multiplefiles"
+          style="visibility: hidden"
+          *ngIf="MultiSelect"
+          type="file"
+          ng2FileSelect
+          [uploader]="uploader"
+          multiple
+        />
+      </div>
+      <div *ngIf="!MultiSelect">
+        <label
+          class="fileUploadSelectBtn"
+          [ngClass]="uploader.queue.length > 0 ? 'disableLable' : ''"
+          [for]="uploader.queue.length > 0 ? '' : 'singleFile'"
+          >{{ this.selectBtnText }}</label
+        >
+        <input
+          id="singleFile"
+          style="visibility: hidden"
+          *ngIf="!MultiSelect"
+          type="file"
+          ng2FileSelect
+          [uploader]="uploader"
+          [accept]="uploader.options.allowedMimeType.toString()"
+        />
+      </div>
+    </div>
+
+    <div class="col-md-11" style="margin-bottom: 40px">
+      <div
+        ng2FileDrop
+        [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+        (fileOver)="fileOverBase($event)"
+        [uploader]="uploader"
+        class="well my-drop-zone"
+      >
+        فایل مورد نظر را اینجا رها کنید
+
+        <table class="table">
+          <!-- <thead>
+          <tr>
+            <th width="50%">Name</th>
+            <th>Size</th>
+            <th>Progress</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead> -->
+          <tbody>
+            <tr *ngFor="let item of uploader.queue">
+              <td>
+                <label class="label col-form-label"
+                  ><strong>{{ item?.file?.name }}</strong></label
+                >
+              </td>
+              <td nowrap>
+                <label class="label col-form-label">
+                  {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB</label
+                >
+              </td>
+              <td>
+                <div class="progress" style="margin-bottom: 0">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    [ngStyle]="{ width: item.progress + '%' }"
+                  ></div>
+                </div>
+              </td>
+              <td class="text-center">
+                <span *ngIf="item.isSuccess"
+                  ><i class="checkmark-outline"></i
+                ></span>
+                <span *ngIf="item.isCancel"
+                  ><i class="glyphicon glyphicon-ban-circle"></i
+                ></span>
+                <span *ngIf="item.isError"><i class="close-outline"></i></span>
+              </td>
+              <td nowrap>
+                <button
+                  nbButton
+                  status="primary"
+                  outline
+                  (click)="item.upload()"
+                  [disabled]="
+                    item.isReady || item.isUploading || item.isSuccess
+                  "
+                >
+                  {{ this.uploadBtnText }}
+                  <nb-icon icon="upload-outline"></nb-icon>
+                </button>
+                <button
+                  nbButton
+                  status="danger"
+                  outline
+                  (click)="item.remove()"
+                >
+                  {{ this.deleteBtnText }}
+                  <nb-icon icon="trash-2-outline"></nb-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="uploader.queue.length > 0">
+        <button
+          nbButton
+          status="primary"
+          outline
+          (click)="uploader.uploadAll()"
+          [disabled]="!uploader.getNotUploadedItems().length"
+        >
+          {{ this.uploadBtnTextAll }}
+          <nb-icon icon="upload-outline"></nb-icon>
+        </button>
+        <button
+          nbButton
+          status="danger"
+          outline
+          (click)="uploader.clearQueue()"
+          [disabled]="!uploader.queue.length"
+        >
+          {{ this.deleteBtnTextAll }}
+          <nb-icon icon="trash-2-outline"></nb-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

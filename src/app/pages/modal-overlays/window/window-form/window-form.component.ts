@@ -7,7 +7,7 @@ import { NbWindowRef } from '@nebular/theme';
       <label for="subject">Subject:</label>
       <input nbInput id="subject" type="text">
 
-      <label class="text-label" for="text">Text:</label>
+      <label class="text-label" for="text">44444444444444:</label>
       <textarea nbInput id="text"></textarea>
     </form>
   `,

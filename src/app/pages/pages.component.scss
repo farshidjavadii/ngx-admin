@@ -16,3 +16,16 @@
     }
   }
 }
+.rightClickPage{
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+  position: fixed;
+  top: 23px;
+  left: 28px;
+  width: 180px;
+  z-index: 100;
+}

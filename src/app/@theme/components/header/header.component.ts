@@ -21,24 +21,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
     {
       value: 'default',
       name: 'Light',
+      persianName : 'ساده'
     },
     {
       value: 'dark',
       name: 'Dark',
+      persianName : 'تیره'
     },
     {
       value: 'cosmic',
       name: 'Cosmic',
+      persianName : 'بنفش'
     },
     {
       value: 'corporate',
       name: 'Corporate',
+      persianName : 'روشن'
     },
   ];
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [ { title: 'پروفایل' }, { title: 'خروج' } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -54,6 +58,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe((users: any) => this.user = users.nick);
+console.log(this.user);
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
