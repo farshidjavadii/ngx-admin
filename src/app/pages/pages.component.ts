@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   HostListener,
   QueryList,
   ViewChildren,
@@ -88,15 +89,18 @@ export class PagesComponent implements AfterViewInit {
       icon: "home-outline",
     },
   ];
-  @ViewChildren("allTheseThings") things: QueryList<any>;
+  @ViewChildren("allTheseThings") things: QueryList<ElementRef>;
 
   ngAfterViewInit(): void {
     this.things.changes.subscribe((t) => {
+      
       this.router.navigate([this.currentMenuhover.item.link]);
 
       if (this.tabs.filter((m) => m.active).length == 0)
         this.tabs[this.tabs.length - 1].active = true;
-    });
+    });   
+    if(this.things.last)
+    this.things.last.nativeElement.click();
   }
   onCloseIconClick(tabElements: HTMLElement) {
     while (tabElements != null && tabElements.tagName != "NB-ICON") {
